@@ -2,10 +2,10 @@
   <%= form_for @income, url:incomes_create_path  do |f| %>
   <div class="form_group">
     <%= f.label :date, '日付' %>
-    <%= f.date_select :date, class: 'date-form' %>
+    <%= f.date_field :date, class: 'date-form' %>
   </div>
   <div class="form_group">
-    <%= f.label :amounts, '収入' %>
+    <%= f.label :amounts, '収入金額' %>
     <%= f.text_field :amounts, class: 'income-form' %>
   </div>
   <div class="form_group">
