@@ -1,5 +1,16 @@
-<h1>今月の収入一覧</h1>
+<h1>収入一覧</h1>
 <div class="index">
+  <div class="search-box">
+    <%= form_tag(incomes_index_path, :method => 'get') do %>
+      <div class="search-group">
+        <%= label :date, '期間検索' %>
+        <%= date_field_tag :start_date %>
+        <%= label :date, '〜' %>
+        <%= date_field_tag :end_date %>
+        <%= submit_tag 'Search' %>
+      </div>
+    <% end %>
+  </div>
   <table class="incomes-index">
     <thead class="table-head">
       <tr>

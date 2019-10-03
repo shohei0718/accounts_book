@@ -1,5 +1,18 @@
-<h1>今月の支出一覧</h1>
+<h1>支出一覧</h1>
 <div class="index">
+  <div class="search">
+    <div class="search-box">
+      <%= form_tag(outcomes_index_path, :method => 'get') do %>
+        <div class="search-group">
+          <%= label :date, '期間検索' %>
+          <%= date_field_tag :start_date %>
+          <%= label :date, '〜' %>
+          <%= date_field_tag :end_date %>
+          <%= submit_tag 'Search' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
   <table class="outcomes-index">
     <thead class="table-head">
       <tr>
