@@ -2,6 +2,7 @@ class OutcomesController < ApplicationController
 
   def index
     @outcomes = Outcome.all
+    @sum = @outcomes.sum(:amounts)
   end
 
   def new

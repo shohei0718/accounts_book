@@ -1,12 +1,29 @@
 <h1>支出一覧</h1>
 <div class="index">
-<% @outcomes.each do |outcome| %>
-  <div class="list">
-    <%= outcome.date %>
-    <%= outcome.amounts %>円
-    <%= outcome.outcome_item.title %>
-  </div>
-<% end %>
+  <table class="outcomes-index">
+    <thead class="table-head">
+      <tr>
+        <th class="head-date">日付</th>
+        <th class="head-item">支出費目</th>
+        <th class="head-amount">支出金額</th>
+        <th class="head-note">備考</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <% @outcomes.each do |outcome| %>
+      <tr>
+        <th class="table-date"><%= outcome.date %></th>
+        <th class="table-item"><%= outcome.outcome_item.title %></th>
+        <th class="table-amount"><%= outcome.amounts %>円</th>
+      </tr>
+      <% end %>
+      <tr>
+        <th>支出合計</th>
+        <th></th>
+        <th><%= @sum %>円</th>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to 'トップページに戻る', top_index_path %>
