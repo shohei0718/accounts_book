@@ -1,8 +1,10 @@
 class OutcomesController < ApplicationController
 
   def index
-    @outcomes = Outcome.all
+  # 一覧には当月分の支出一覧のみ表示させる
+    @outcomes = Outcome.where(date: Time.now.all_month)
     @sum = @outcomes.sum(:amounts)
+
   end
 
   def new

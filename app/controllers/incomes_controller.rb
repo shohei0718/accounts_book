@@ -1,7 +1,8 @@
 class IncomesController < ApplicationController
 
   def index
-    @incomes = Income.all
+  # 一覧には当月分の支出一覧のみ表示させる
+    @incomes = Income.where(date: Time.now.all_month)
     @sum = @incomes.sum(:amounts)
   end
 
