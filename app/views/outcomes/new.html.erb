@@ -1,0 +1,19 @@
+<h1>支出登録</h1>
+  <%= form_for @outcome, url: outcomes_create_path do |f| %>
+  <div class="form_group">
+    <%= f.label :date, '日付' %>
+    <%= f.date_select :date, class: 'date-form' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :amounts, '支出' %>
+    <%= f.text_field :amounts, class: 'outcome-form' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :outcome_item_id, '支出費目' %>
+    <%= f.select :outcome_item_id, OutcomeItem.all.map { |item| [item.title, item.id] }, class: 'outcome-item-form' %>
+  </div>
+  <div class="btn-block">
+    <%= link_to 'トップページへ戻る', top_index_path, class: "btn" %>
+    <%= f.submit '登録', class: "btn" %>
+  </div>
+  <% end %>

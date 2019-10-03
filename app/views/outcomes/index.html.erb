@@ -1,0 +1,12 @@
+<h1>支出一覧</h1>
+<div class="index">
+<% @outcomes.each do |outcome| %>
+  <div class="list">
+    <%= outcome.date %>
+    <%= outcome.amounts %>円
+    <%= outcome.outcome_item.title %>
+  </div>
+<% end %>
+</div>
+
+<%= link_to 'トップページに戻る', top_index_path %>
