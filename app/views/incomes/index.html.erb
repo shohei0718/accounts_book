@@ -1,12 +1,29 @@
 <h1>収入一覧</h1>
 <div class="index">
-<% @incomes.each do |income| %>
-  <div class="list">
-    <%= income.date %>
-    <%= income.amounts %>円
-    <%= income.income_item.title %>
-  </div>
-<% end %>
+  <table class="incomes-index">
+    <thead class="table-head">
+      <tr>
+        <th class="head-date">日付</th>
+        <th class="head-item">収入費目</th>
+        <th class="head-amount">収入金額</th>
+        <th class="head-note">備考</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <% @incomes.each do |income| %>
+      <tr>
+        <th class="table-date"><%= income.date %></th>
+        <th class="table-item"><%= income.income_item.title %></th>
+        <th class="table-amount"><%= income.amounts %>円</th>
+      </tr>
+      <% end %>
+      <tr>
+        <th>収入合計</th>
+        <th></th>
+        <th><%= @sum %>円</th>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to 'トップページに戻る', top_index_path %>

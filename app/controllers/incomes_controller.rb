@@ -2,6 +2,7 @@ class IncomesController < ApplicationController
 
   def index
     @incomes = Income.all
+    @sum = @incomes.sum(:amounts)
   end
 
   def new
