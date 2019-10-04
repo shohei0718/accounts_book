@@ -1,7 +1,11 @@
 class IncomesController < ApplicationController
 
   def index
-    @incomes = Income.search(params[:start_date], params[:end_date])
+    if params[:start_date] || params[:end_date]
+      @incomes = Income.search(params[:start_date], params[:end_date])
+    else
+      @incomes = Income.this_month
+    end
     @sum = @incomes.sum(:amounts)
   end
 

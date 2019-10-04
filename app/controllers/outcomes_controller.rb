@@ -1,7 +1,11 @@
 class OutcomesController < ApplicationController
 
   def index
-    @outcomes = Outcome.search(params[:start_date], params[:end_date])
+    if params[:start_date] || params[:end_date]
+      @outcomes = Outcome.search(params[:start_date], params[:end_date])
+    else
+      @outcomes = Outcome.this_month
+    end
     @sum = @outcomes.sum(:amounts)
 
   end
