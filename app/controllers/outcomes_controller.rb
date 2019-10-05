@@ -26,7 +26,7 @@ class OutcomesController < ApplicationController
   private
 
   def outcomes_params
-    params.require(:outcome).permit(:id, :date, :amounts, :outcome_item_id)
+    params.require(:outcome).permit(:id, :date, :amounts, :outcome_item_id).merge(user_id: current_user.id)
   end  
 
 

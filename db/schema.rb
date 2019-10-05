@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_22_112402) do
+ActiveRecord::Schema.define(version: 2019_10_04_090633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 2019_09_22_112402) do
     t.datetime "updated_at", null: false
     t.bigint "income_item_id"
     t.text "note"
+    t.bigint "user_id"
     t.index ["income_item_id"], name: "index_incomes_on_income_item_id"
+    t.index ["user_id"], name: "index_incomes_on_user_id"
   end
-
-  add_foreign_key "incomes", "income_items"
 
   create_table "outcome_items", force: :cascade do |t|
     t.text "title", null: false
@@ -46,8 +46,21 @@ ActiveRecord::Schema.define(version: 2019_09_22_112402) do
     t.datetime "updated_at", null: false
     t.bigint "outcome_item_id"
     t.text "note"
+    t.bigint "user_id"
     t.index ["outcome_item_id"], name: "index_outcomes_on_outcome_item_id"
+    t.index ["user_id"], name: "index_outcomes_on_user_id"
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "username", null: false
+    t.text "email", null: false
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "incomes", "income_items"
+  add_foreign_key "incomes", "users"
   add_foreign_key "outcomes", "outcome_items"
+  add_foreign_key "outcomes", "users"
 end
