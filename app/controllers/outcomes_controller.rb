@@ -1,8 +1,10 @@
 class OutcomesController < ApplicationController
 
   def index
-    if params[:start_date] || params[:end_date]
-      @outcomes = Outcome.search(params[:start_date], params[:end_date])
+    @start_date = params[:start_date]
+    @end_date   = params[:end_date]
+    if @start_date || @end_date
+      @outcomes = Outcome.search(@start_date, @end_date)
     else
       @outcomes = Outcome.this_month
     end
@@ -26,7 +28,7 @@ class OutcomesController < ApplicationController
   private
 
   def outcomes_params
-    params.require(:outcome).permit(:id, :date, :amounts, :outcome_item_id).merge(user_id: current_user.id)
+    params.require(:outcome).permit(:id, :date, :amounts, :outcome_item_id, :note).merge(user_id: current_user.id)
   end  
 
 
