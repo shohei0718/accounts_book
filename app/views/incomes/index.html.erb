@@ -11,6 +11,13 @@
       </div>
     <% end %>
   </div>
+  <div class="period">
+    <% if @start_date || @end_date %>
+    <%= "#{@start_date}" %> 〜 <%= "#{@end_date}" %> の支出一覧
+    <% else %>
+    <%= Date.today.month %>月の支出一覧
+    <% end %>
+  </div>
   <table class="incomes-index">
     <thead class="table-head">
       <tr>
@@ -26,6 +33,7 @@
         <th class="table-date"><%= income.date %></th>
         <th class="table-item"><%= income.income_item.title %></th>
         <th class="table-amount"><%= income.amounts %>円</th>
+        <th class="table-note"><%= income.note %></th>
       </tr>
       <% end %>
       <tr>
