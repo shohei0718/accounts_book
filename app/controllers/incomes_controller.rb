@@ -23,7 +23,27 @@ class IncomesController < ApplicationController
       render :new
     end
   end
- 
+
+  def edit
+    @income = Income.find(params[:id])
+  end
+
+  def update
+    @income = Income.find(params[:id])
+    if @income.update(incomes_params)
+      redirect_to incomes_path,
+        flash: { confirm: '更新が完了しました'}
+    else
+      render action: "edit"
+    end
+  end
+
+  def destroy
+    @income = Income.find(params[:id])
+    @income.destroy
+    redirect_to incomes_path
+  end
+
   private
   
   def incomes_params

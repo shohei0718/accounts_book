@@ -25,6 +25,26 @@ class OutcomesController < ApplicationController
     end
   end
 
+  def edit
+    @outcome = Outcome.find(params[:id])
+  end
+
+  def update
+    @outcome = Outcome.find(params[:id])
+    if @outcome.update(outcomes_params)
+      redirect_to outcomes_path,
+        flash: { confirm: '更新が完了しました'}
+    else
+      render action: "edit"
+    end
+  end
+
+  def destroy
+    @outcome = Outcome.find(params[:id])
+    @outcome.destroy
+    redirect_to outcomes_path
+  end
+
   private
 
   def outcomes_params
