@@ -2,7 +2,7 @@
 <div class="index">
   <div class="search">
     <div class="search-box">
-      <%= form_tag(outcomes_index_path, :method => 'get') do %>
+      <%= form_tag(outcomes_path, method: :get) do %>
         <div class="search-group">
           <%= label :date, '期間検索' %>
           <%= date_field_tag :start_date %>
@@ -27,6 +27,8 @@
         <th class="head-item">支出費目</th>
         <th class="head-amount">支出金額</th>
         <th class="head-note">備考</th>
+        <th class="head-edit"></th>
+        <th class="head-delete"></th>
       </tr>
     </thead>
     <tbody class="table-body">
@@ -36,6 +38,15 @@
         <th class="table-item"><%= outcome.outcome_item.title %></th>
         <th class="table-amount"><%= outcome.amounts %>円</th>
         <th class="table-note"><%= outcome.note %></th>
+        <th class="table-edit">
+        <%= link_to edit_outcome_path(outcome.id) do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+        </th>
+        <th class="table-delete"><%= link_to outcome_path(outcome.id), method: :delete, data: {confirm: "本当に削除してもよろしいでしょうか"} do %>
+          <i class="material-icons">delete</i>
+        <% end %>
+        </th>
       </tr>
       <% end %>
       <tr>

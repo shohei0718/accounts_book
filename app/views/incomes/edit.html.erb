@@ -1,16 +1,16 @@
-<h1>支出登録</h1>
-  <%= form_for @outcome, url: outcomes_path, method: :post do |f| %>
+<h1>編集</h1>
+  <%= form_for @income, url: income_path, method: :patch  do |f| %>
   <div class="form_group">
     <%= f.label :date, '日付' %>
     <%= f.date_field :date, value: Time.now.strftime("%Y-%m-%d"), class: 'date-form' %>
   </div>
   <div class="form_group">
-    <%= f.label :amounts, '支出金額' %>
-    <%= f.number_field :amounts, class: 'outcome-form' %>
+    <%= f.label :amounts, '収入金額' %>
+    <%= f.number_field :amounts, class: 'income-form' %>
   </div>
   <div class="form_group">
-    <%= f.label :outcome_item_id, '支出費目' %>
-    <%= f.select :outcome_item_id, OutcomeItem.all.map { |item| [item.title, item.id] }, class: 'outcome-item-form' %>
+    <%= f.label :income_item_id, '収入費目' %>
+    <%= f.select :income_item_id, IncomeItem.all.map { |item| [item.title, item.id] }, class: 'income-item-form' %>
   </div>
   <div class="form_group">
     <%= f.label :note, '備考メモ' %>
@@ -18,6 +18,6 @@
   </div>
   <div class="btn-block">
     <%= link_to 'トップページへ戻る', top_index_path, class: "btn" %>
-    <%= f.submit '登録', class: "btn" %>
+    <%= f.submit '編集', class: "btn" %>
   </div>
   <% end %>

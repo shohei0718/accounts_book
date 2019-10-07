@@ -10,14 +10,8 @@ Rails.application.routes.draw do
 
   get 'top/index'
 
-  get 'incomes/index', to: 'incomes#index'
-  get 'outcomes/index', to: 'outcomes#index'
-
-  get 'incomes/new', to: 'incomes#new'
-  post 'incomes/create', to: 'incomes#create'
-
-  get 'outcomes/new', to: 'outcomes#new'
-  post 'outcomes/create', to: 'outcomes#create'
+  resources :incomes, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :outcomes, only: [:index, :new, :create, :edit, :update, :destroy]
 
   get 'income_items/new', to: 'income_items#new'
   post 'income_items/create', to: 'income_items#create'
