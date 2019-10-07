@@ -1,7 +1,7 @@
 <h1>収入一覧</h1>
 <div class="index">
   <div class="search-box">
-    <%= form_tag(incomes_index_path, :method => 'get') do %>
+    <%= form_tag(incomes_path, method: :get) do %>
       <div class="search-group">
         <%= label :date, '期間検索' %>
         <%= date_field_tag :start_date %>
@@ -25,6 +25,8 @@
         <th class="head-item">収入費目</th>
         <th class="head-amount">収入金額</th>
         <th class="head-note">備考</th>
+        <th class="head-edit"></th>
+        <th class="head-delete"></th>
       </tr>
     </thead>
     <tbody class="table-body">
@@ -34,6 +36,15 @@
         <th class="table-item"><%= income.income_item.title %></th>
         <th class="table-amount"><%= income.amounts %>円</th>
         <th class="table-note"><%= income.note %></th>
+        <th class="table-edit">
+        <%= link_to edit_income_path(income.id) do %>
+          <i class="material-icons">edit</i>
+        <% end %>
+        </th>
+        <th class="table-delete"><%= link_to income_path(income.id), method: :delete, data: {confirm: "本当に削除してもよろしいでしょうか"} do %>
+          <i class="material-icons">delete</i>
+        <% end %>
+        </th>
       </tr>
       <% end %>
       <tr>
