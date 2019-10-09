@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :incomes, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :outcomes, only: [:index, :new, :create, :edit, :update, :destroy]
-
+  resources :budgets, only: [:new, :create]
   get 'income_items/new', to: 'income_items#new'
   post 'income_items/create', to: 'income_items#create'
 
