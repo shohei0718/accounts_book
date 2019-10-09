@@ -1,0 +1,21 @@
+<h1>予算登録</h1>
+  <%= form_for @budget, url: budgets_path, method: :post do |f| %>
+  <div class="form_group">
+    <%= f.label :begining, '開始日' %>
+    <%= f.date_field :begining, class: 'date-form' %>
+    <%= f.label :ending, '終了日' %>
+    <%= f.date_field :ending, class: 'date-form' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :budget, '予算金額' %>
+    <%= f.number_field :budget, class: 'budget-form' %>
+  </div>
+  <div class="form_group">
+    <%= f.label :outcome_item_id, '支出費目' %>
+    <%= f.select :outcome_item_id, OutcomeItem.all.map { |item| [item.title, item.id] }, class: 'outcome-item-form' %>
+  </div>
+  <div class="btn-block">
+    <%= link_to 'トップページへ戻る', top_index_path, class: "btn" %>
+    <%= f.submit '登録', class: "btn" %>
+  </div>
+  <% end %>
